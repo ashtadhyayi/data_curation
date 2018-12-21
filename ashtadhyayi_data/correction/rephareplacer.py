@@ -11,7 +11,6 @@ def rephareplacer(inputfile):
 		else:
 			split = datum.split(':')
 			changefile = str(split[2]).strip()
-			print changefile
 			existing = split[0]
 			replacement = split[1]
 			fchange = codecs.open(changefile,'r','utf-8')

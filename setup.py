@@ -24,7 +24,7 @@ except (IOError, ImportError):
     long_description = ''
 
 setup(
-    name='doc_curation',
+    name='ashtadhyayi_data',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
@@ -35,7 +35,7 @@ setup(
     long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com/sanskrit-coders/doc_curation',
+    url='https://github.com/ashtadhyayi/data_curation',
 
     # Author details
     author='Sanskrit programmers',

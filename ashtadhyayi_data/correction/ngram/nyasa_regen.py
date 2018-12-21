@@ -5,7 +5,8 @@ To generate words having unique ngrams.
 """
 import sys, re
 import codecs,glob
-import transcoder
+
+from indic_transliteration import sanscript
 from lxml import etree
 
 class sn():
@@ -21,7 +22,7 @@ def postprocess(line):
 	x = line.replace('&quot;','`')
 	m = re.search('<div>([^<]*) <span class="sUtramIndex">, ([^<]*)</span> </div><p>',x)
 	if m:
-		rep = '---\nindex:  '+transcoder.transcoder_processString(m.group(2),'deva','slp1')+'\nsutra:  '+m.group(1)+'\nvritti:  nyasa\n---\n\n'
+		rep = '---\nindex:  '+sanscript.transliterate(m.group(2),sanscript.DEVANAGARI,sanscript.SLP1)+'\nsutra:  '+m.group(1)+'\nvritti:  nyasa\n---\n\n'
 		x = re.sub('<div>([^<]*) <span class="sUtramIndex">, ([^<]*)</span> </div><p>',rep,x)
 	x = re.sub('<span class="sUtramIndex"><a href="([0-9.]+)[.]htm">([^<]*)</a></span>','(\g<1>)',x)
 	x = x.replace('<span class="prashna">','')
@@ -39,7 +40,6 @@ if __name__=="__main__":
 		data = fin.read()
 		fin.close()
 		outfile = fname(inputfile)
-		print outfile
 		fout = codecs.open(outfile,'w','utf-8')
 		splits = data.split(u'<div class="heading">न्यासः</div>')
 		if len(splits) == 2:

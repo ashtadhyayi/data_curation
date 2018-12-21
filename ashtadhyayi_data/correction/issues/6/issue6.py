@@ -11,7 +11,7 @@ if __name__=="__main__":
 			inputdir = '../../../'+book+'/'+pada
 			inputfiles = glob.glob(inputdir+'/*.*')
 			for inputfile in inputfiles:
-				print inputfile
+				print(inputfile)
 				fin = codecs.open(inputfile,'r','utf-8')
 				lines = fin.readlines()
 				fin.close()
