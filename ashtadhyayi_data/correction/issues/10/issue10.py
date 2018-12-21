@@ -51,5 +51,6 @@ if __name__ == "__main__":
 		for subfolder in subfolders:
 			files = glob.glob(os.path.join(subfolder, '*.md'))
 			for file in files:
+				print(file)
 				doCorrections(file, repList)
 		
