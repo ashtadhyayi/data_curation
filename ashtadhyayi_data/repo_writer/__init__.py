@@ -22,7 +22,7 @@ def get_output_path(vritti_id, sutra_id):
     outpath = os.path.join(shared_repo_path, vritti_id, "pada-" + ashtadhyayi_data.get_adhyaya_pada_id(sutra_id), sutra_id + "." + extension)
     return outpath
 
-class NeeleshSite(object):
+class NeeleshSiteExporter(object):
     @classmethod
     def dump_all_from_api(cls, vritti_id):
         for sutra_id in ashtadhyayi_data.sutra_df.index:
@@ -75,5 +75,5 @@ def dump_tsv_vritti(vritti_id):
 if __name__ == '__main__':
     pass
     # dump_tsv_vritti("topic")
-    NeeleshSite.dump_all_from_api("tattvabodhini")
+    NeeleshSiteExporter.dump_all_from_api("tattvabodhini")
     # delete_empty_vritti_files("padamanjari")
