@@ -1,6 +1,7 @@
 import glob
 import os
 import pandas
+from difflib import SequenceMatcher
 
 import frontmatter
 import logging
@@ -35,10 +36,16 @@ def get_vritti_metadata_df(vritti_id):
 def get_vrittis_with_mismatching_sutra(vritti_id):
     vritti_metadata_df = get_vritti_metadata_df(vritti_id=vritti_id)
     from ashtadhyayi_data import sutra_df
-    filtered_df = vritti_metadata_df[vritti_metadata_df["sutra"].replace(to_replace="[ ऽ]", regex=True, value="") != sutra_df.loc[vritti_metadata_df["index"], 'sutra'].replace(to_replace="[ ऽ]", regex=True, value="")]
+    def mismatch_filter_fn(row, threshold=0.7):
+        if SequenceMatcher(a=row.loc['sutra'], b=sutra_df.loc[row['index'], 'sutra']).ratio() < threshold:
+            return True
+        else:
+            return False
+    filtered_index = vritti_metadata_df.apply(mismatch_filter_fn, axis=1)
+    filtered_df = vritti_metadata_df[filtered_index]
     logging.debug(filtered_df)
     pass
 
 
 if __name__ == '__main__':
-    get_vrittis_with_mismatching_sutra(vritti_id='balamanorama')
+    get_vrittis_with_mismatching_sutra(vritti_id='kashika')
