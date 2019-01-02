@@ -26,8 +26,8 @@ def get_vritti_metadata_df(vritti_id):
         with open(file_path) as f:
             vritti_data = frontmatter.load(f)
             vritti_df.loc[vritti_data["index"]] = [vritti_data["index"], vritti_data["sutra"], None]
-            if "vritti_index" in vritti_data:
-                vritti_df.loc[vritti_data["index"], "vritti_index"] = vritti_data["vritti_index"]
+            if "vrittiindex" in vritti_data:
+                vritti_df.loc[vritti_data["index"], "vritti_index"] = vritti_data["vrittiindex"]
             # logging.debug(vritti_data)
     vritti_df.set_index("index")
     return vritti_df
@@ -37,7 +37,8 @@ def get_vrittis_with_mismatching_sutra(vritti_id):
     vritti_metadata_df = get_vritti_metadata_df(vritti_id=vritti_id)
     from ashtadhyayi_data import sutra_df
     def mismatch_filter_fn(row, threshold=0.7):
-        if SequenceMatcher(a=row.loc['sutra'], b=sutra_df.loc[row['index'], 'sutra']).ratio() < threshold:
+        # logging.debug(row)
+        if row['index'] not in sutra_df.index or SequenceMatcher(a=row.loc['sutra'], b=sutra_df.loc[row['index'], 'sutra']).ratio() < threshold:
             return True
         else:
             return False
@@ -48,4 +49,4 @@ def get_vrittis_with_mismatching_sutra(vritti_id):
 
 
 if __name__ == '__main__':
-    get_vrittis_with_mismatching_sutra(vritti_id='kashika')
+    get_vrittis_with_mismatching_sutra(vritti_id='laghusiddhantakaumudi')
