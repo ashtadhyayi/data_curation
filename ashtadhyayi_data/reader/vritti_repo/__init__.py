@@ -49,4 +49,4 @@ def get_vrittis_with_mismatching_sutra(vritti_id):
 
 
 if __name__ == '__main__':
-    get_vrittis_with_mismatching_sutra(vritti_id='laghusiddhantakaumudi')
+    get_vrittis_with_mismatching_sutra(vritti_id='tattvabodhini')
