@@ -2,8 +2,7 @@ import logging
 import os
 
 import ashtadhyayi_data
-from ashtadhyayi_data.reader import ashtadhyayi_org
-from ashtadhyayi_data.reader.ashtadhyayi_org import api
+from ashtadhyayi_data.reader.ashtadhyayi_com import api
 
 for handler in logging.root.handlers[:]:
     logging.root.removeHandler(handler)

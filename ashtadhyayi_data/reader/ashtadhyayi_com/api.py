@@ -1,11 +1,11 @@
 import json
+import logging
+import os
 
 import requests
-import logging
-import ashtadhyayi_data
-import os
-import html
 from ratelimit import limits, sleep_and_retry
+
+import ashtadhyayi_data
 
 for handler in logging.root.handlers[:]:
     logging.root.removeHandler(handler)
