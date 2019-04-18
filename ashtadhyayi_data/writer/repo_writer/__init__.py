@@ -13,6 +13,7 @@ logging.basicConfig(
 
 shared_repo_path = "/home/vvasuki/sanskrit/ashtadhyayi"
 
+
 def get_output_path(vritti_id, sutra_id):
     if vritti_id in ["padachcheda", "full_sutra", "anuvritti", "adhikara", "sumit_garg_english", 'topic']:
         extension = "txt"
@@ -20,6 +21,7 @@ def get_output_path(vritti_id, sutra_id):
         extension = "md"
     outpath = os.path.join(shared_repo_path, vritti_id, "pada-" + ashtadhyayi_data.get_adhyaya_pada_id(sutra_id), sutra_id + "." + extension)
     return outpath
+
 
 class NeeleshSiteExporter(object):
     @classmethod
