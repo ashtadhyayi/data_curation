@@ -37,7 +37,7 @@ jobs:
         python setup.py install
     - name: Build test
       run: |
-        python -c "import data_curation"
+        python -c "import ashtadhyayi_data"
     - name: Test with pytest
       run: |
         pip install pytest
