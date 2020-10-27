@@ -29,6 +29,8 @@ def markdownify(content):
 
 
 def dump_suutra_commentary(suutra, comment, output_path, dry_run):
+  if len(comment) == 0:
+    return 
   suutra_index = "%s.%s.%s" % (suutra["a"], suutra["p"], suutra["n"])
   outpath = os.path.join(output_path, "pada-%s.%s/%s.md" % (suutra["a"], suutra["p"], suutra_index))
   metadata = {"index": suutra_index, "sutra": suutra["s"]}
@@ -66,7 +68,7 @@ def separate_commentaries(indir, outdir, dry_run):
     for key in ["pc", "ad", "an", "ss"]:
       output_path = os.path.join(outdir, "sUtra-basics", key)
       for suutra in suutra_data:
-        dump_suutra_commentary(suutra=suutra, comment=suutra_data[key], output_path=output_path, dry_run=dry_run)
+        dump_suutra_commentary(suutra=suutra, comment=suutra[key], output_path=output_path, dry_run=dry_run)
 
 
 # python -c "from ashtadhyayi_data.reader.ashtadhyayi_com import transformer; transformer.separate_commentaries(indir=\"`pwd`/sutraani\", outdir=\"`pwd`/sUtra-commentaries/\", dry_run=True)"
