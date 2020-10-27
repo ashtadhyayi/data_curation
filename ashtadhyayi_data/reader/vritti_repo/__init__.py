@@ -35,10 +35,10 @@ def get_vritti_metadata_df(vritti_id):
 
 def get_vrittis_with_mismatching_sutra(vritti_id):
     vritti_metadata_df = get_vritti_metadata_df(vritti_id=vritti_id)
-    from ashtadhyayi_data import sutra_df
+    from ashtadhyayi_data import suutra_df
     def mismatch_filter_fn(row, threshold=0.7):
         # logging.debug(row)
-        if row['index'] not in sutra_df.index or SequenceMatcher(a=row.loc['sutra'], b=sutra_df.loc[row['index'], 'sutra']).ratio() < threshold:
+        if row['index'] not in suutra_df.index or SequenceMatcher(a=row.loc['sutra'], b=suutra_df.loc[row['index'], 'sutra']).ratio() < threshold:
             return True
         else:
             return False

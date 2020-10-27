@@ -28,7 +28,7 @@ def markdownify(content):
   return content
 
 
-def dump_sutra_commentary(suutra, comment, output_path, dry_run):
+def dump_suutra_commentary(suutra, comment, output_path, dry_run):
   suutra_index = "%s.%s.%s" % (suutra["a"], suutra["p"], suutra["n"])
   outpath = os.path.join(output_path, "pada-%s.%s/%s.md" % (suutra["a"], suutra["p"], suutra_index))
   metadata = {"index": suutra_index, "sutra": suutra["s"]}
@@ -47,10 +47,10 @@ def dump_commentary_data(commentary_file_path, suutra_data_path, output_path, dr
       comment = comments.get(suutra["i"], None)
       if comment is not None:
         if isinstance(comment, str):
-          dump_sutra_commentary(suutra=suutra, comment=comment, output_path=output_path, dry_run=dry_run)
+          dump_suutra_commentary(suutra=suutra, comment=comment, output_path=output_path, dry_run=dry_run)
         elif isinstance(comment, dict):
           for key in comment:
-            dump_sutra_commentary(suutra=suutra, comment=comment[key], output_path=os.path.join(output_path, key), dry_run=dry_run)
+            dump_suutra_commentary(suutra=suutra, comment=comment[key], output_path=os.path.join(output_path, key), dry_run=dry_run)
 
 
 def separate_commentaries(indir, outdir, dry_run):
@@ -62,5 +62,6 @@ def separate_commentaries(indir, outdir, dry_run):
     dump_commentary_data(commentary_file_path=commentary_file, suutra_data_path=suutra_data_path, output_path=output_path, dry_run=dry_run)
 
 
+# python -c "from ashtadhyayi_data.reader.ashtadhyayi_com import transformer; transformer.separate_commentaries(indir=\"`pwd`/sutraani\", outdir=\"`pwd`/sUtra-commentaries/\", dry_run=True)"
 if __name__ == '__main__':
-    separate_commentaries(indir="/home/vvasuki/sanskrit/raw_etexts/vyAkaraNam/aShTAdhyAyI-com-data/sutraani", outdir="/home/vvasuki/sanskrit/raw_etexts/vyAkaraNam/aShTAdhyAyI-com-data/sUtra-commentaries/", dry_run=True)
+  separate_commentaries(indir="/home/vvasuki/sanskrit/raw_etexts/vyAkaraNam/aShTAdhyAyI-com-data/sutraani", outdir="/home/vvasuki/sanskrit/raw_etexts/vyAkaraNam/aShTAdhyAyI-com-data/sUtra-commentaries/", dry_run=True)

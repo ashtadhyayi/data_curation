@@ -12,15 +12,17 @@ logging.basicConfig(
     format="%(levelname)s:%(asctime)s:%(module)s:%(lineno)d %(message)s"
 )
 
-sutra_tsv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sutrANi.tsv")
-sutra_df = pandas.read_csv(sutra_tsv_path, sep="\t")
-sutra_df = sutra_df.set_index("id")
-# logging.debug(sutra_df.index)
-# exit()
+def get_suutra_df():
+    suutra_tsv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sutrANi.tsv")
+    suutra_df = pandas.read_csv(suutra_tsv_path, sep="\t")
+    suutra_df = suutra_df.set_index("id")
+    return suutra_df
+    # logging.debug(suutra_df.index)
+    # exit()
 
 
-def get_adhyaya_pada_id(sutra_id):
-    return ".".join(sutra_id.split(".")[0:2])
+def get_adhyaya_pada_id(suutra_id):
+    return ".".join(suutra_id.split(".")[0:2])
 
 if __name__ == '__main__':
     logging.debug(get_adhyaya_pada_id("1.1.1"))

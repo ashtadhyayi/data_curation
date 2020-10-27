@@ -45,14 +45,14 @@ def default_headwords_generator(sutra):
     index = json_doc.get('index', '')
     index_de = transliterate(index, ITRANS, DEVANAGARI)
     sutra = json_doc.get('sutra', '')
-    sutra_itrans = transliterate(sutra, DEVANAGARI, ITRANS).replace('|', '।')
+    suutra_itrans = transliterate(sutra, DEVANAGARI, ITRANS).replace('|', '।')
     head_words = [
         index,
         index_de,
         sutra,
-        sutra_itrans,
-        index + ' ' + sutra_itrans,
-        sutra_itrans + ' ' + index,
+        suutra_itrans,
+        index + ' ' + suutra_itrans,
+        suutra_itrans + ' ' + index,
         index_de + ' ' + sutra,
         sutra + ' ' + index_de
     ]

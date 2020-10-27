@@ -23,11 +23,11 @@ def setup_vritti(vritti_id):
     # exit()
 
 
-def get_vritti(vritti_id, sutra_id):
-    vritti = vritti_df_map[vritti_id].loc[sutra_id, "vritti"]
+def get_vritti(vritti_id, suutra_id):
+    vritti = vritti_df_map[vritti_id].loc[suutra_id, "vritti"]
     return vritti
 
 
 if __name__ == '__main__':
     setup_vritti("topic")
-    get_vritti(sutra_id="1.4.2", vritti_id="topic")
+    get_vritti(suutra_id="1.4.2", vritti_id="topic")
