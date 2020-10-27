@@ -18,6 +18,7 @@ sutra_df = sutra_df.set_index("id")
 # logging.debug(sutra_df.index)
 # exit()
 
+
 def get_adhyaya_pada_id(sutra_id):
     return ".".join(sutra_id.split(".")[0:2])
 

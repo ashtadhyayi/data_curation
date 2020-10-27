@@ -3,7 +3,6 @@ import logging
 import os
 
 import requests
-from ratelimit import limits, sleep_and_retry
 
 import ashtadhyayi_data
 
@@ -27,8 +26,7 @@ def get_data_from_dump(sutra_id):
             dump_sutra_data_from_api(output_path=os.path.join(ashtadhyayi_data_repo_path, "jsons/"), sutra_id=sutra_id)
             return get_data_from_dump(sutra_id)
 
-@sleep_and_retry
-@limits(calls=180, period=60)
+
 def get_data_from_api(sutra_id, as_json=False):
     url = "http://www.ashtadhyayi.com/sutraani/json.php/" + sutra_id.replace(".", "/")
     response = requests.get(url)

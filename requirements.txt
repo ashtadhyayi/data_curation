@@ -1,3 +1,2 @@
 pandas
-internetarchive
-python-frontmatter
+doc_curation
