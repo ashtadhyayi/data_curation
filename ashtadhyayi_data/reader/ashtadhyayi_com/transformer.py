@@ -55,11 +55,18 @@ def dump_commentary_data(commentary_file_path, suutra_data_path, output_path, dr
 
 def separate_commentaries(indir, outdir, dry_run):
   commentaries = ["balamanorama", "bhashya", "kashika", "kaumudi", "laghukaumudi", "nyaas", "padamanjari", "sutrartha", "sutrartha_english", "tattvabodhini", "vartika"]
+  suutra_data_path = os.path.join(indir, "data.txt")
   for commentary in commentaries:
     commentary_file = os.path.join(indir, "%s.txt" % commentary)
-    suutra_data_path = os.path.join(indir, "data.txt")
     output_path = os.path.join(outdir, commentary)
     dump_commentary_data(commentary_file_path=commentary_file, suutra_data_path=suutra_data_path, output_path=output_path, dry_run=dry_run)
+
+  with codecs.open(suutra_data_path) as suutra_data_file:
+    suutra_data = json.load(suutra_data_file)["data"]
+    for key in ["pc", "ad", "an", "ss"]:
+      output_path = os.path.join(outdir, "sUtra-basics", key)
+      for suutra in suutra_data:
+        dump_suutra_commentary(suutra=suutra, comment=suutra_data[key], output_path=output_path, dry_run=dry_run)
 
 
 # python -c "from ashtadhyayi_data.reader.ashtadhyayi_com import transformer; transformer.separate_commentaries(indir=\"`pwd`/sutraani\", outdir=\"`pwd`/sUtra-commentaries/\", dry_run=True)"
