@@ -71,6 +71,10 @@ def separate_commentaries(indir, outdir, dry_run):
         dump_suutra_commentary(suutra=suutra, comment=suutra[key], output_path=output_path, dry_run=dry_run)
 
 
+def transform(indir, outdir, dry_run):
+  separate_commentaries(indir=os.path.join(indir, "sutraani"), outdir=os.path.join(outdir, "sUtra-commentaries"), dry_run=True)
+
+
 # python -c "from ashtadhyayi_data.reader.ashtadhyayi_com import transformer; transformer.separate_commentaries(indir=\"`pwd`/sutraani\", outdir=\"`pwd`/sUtra-commentaries/\", dry_run=True)"
 if __name__ == '__main__':
-  separate_commentaries(indir="/home/vvasuki/sanskrit/raw_etexts/vyAkaraNam/aShTAdhyAyI-com-data/sutraani", outdir="/home/vvasuki/sanskrit/raw_etexts/vyAkaraNam/aShTAdhyAyI-com-data/sUtra-commentaries/", dry_run=True)
+  transform(indir="/home/vvasuki/sanskrit/raw_etexts/vyAkaraNam/aShTAdhyAyI-com-data/", outdir="/home/vvasuki/sanskrit/raw_etexts/vyAkaraNam/aShTAdhyAyI_central-repo/ashtadhyayi_com_transforms", dry_run=True)
