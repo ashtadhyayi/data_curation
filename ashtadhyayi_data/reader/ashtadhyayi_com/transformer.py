@@ -72,7 +72,7 @@ def separate_commentaries(indir, outdir, dry_run):
 
 
 def transform(indir, outdir, dry_run):
-  separate_commentaries(indir=os.path.join(indir, "sutraani"), outdir=os.path.join(outdir, "sUtra-commentaries"), dry_run=True)
+  separate_commentaries(indir=os.path.join(indir, "sutraani"), outdir=os.path.join(outdir, "sUtra-commentaries"), dry_run=dry_run)
 
 
 # python -c "from ashtadhyayi_data.reader.ashtadhyayi_com import transformer; transformer.separate_commentaries(indir=\"`pwd`/sutraani\", outdir=\"`pwd`/sUtra-commentaries/\", dry_run=True)"
