@@ -7,9 +7,6 @@ import shutil
 import regex
 from doc_curation import md_helper
 
-import ashtadhyayi_data
-from ashtadhyayi_data import writer
-
 for handler in logging.root.handlers[:]:
   logging.root.removeHandler(handler)
 logging.basicConfig(
@@ -94,6 +91,11 @@ def transform(indir, outdir, dry_run):
   if os.path.exists(modified_files_json):
     with codecs.open(modified_files_json) as f:
       commentaries = [os.path.basename(f).replace(".txt", "") for f in json.load(f) if f.startswith("sutraani")]
+      if len(commentaries) == 0:
+        logging.info("Must be a dummy commit to trigger regeneration of all commentaries.")
+        commentaries = None
+      else:
+        logging.info("Commentaries to regenerate:" + str(commentaries))
   separate_commentaries(indir=os.path.join(indir, "sutraani"), outdir=os.path.join(outdir, "sUtra-commentaries"), dry_run=dry_run, commentaries_in=commentaries)
 
 
