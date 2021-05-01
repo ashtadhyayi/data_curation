@@ -5,7 +5,8 @@ import os
 import shutil
 
 import regex
-from doc_curation import md_helper
+
+from doc_curation.md.file import MdFile
 
 for handler in logging.root.handlers[:]:
   logging.root.removeHandler(handler)
@@ -35,7 +36,7 @@ def dump_suutra_commentary(suutra, comment, output_path, dry_run):
   # logging.debug(metadata)
   # logging.debug(comment)
   content = markdownify(comment)
-  md_file = md_helper.MdFile(file_path=outpath, frontmatter_type=md_helper.MdFile.YAML)
+  md_file = MdFile(file_path=outpath, frontmatter_type=MdFile.YAML)
   md_file.dump_to_file(metadata=metadata, md=content, dry_run=dry_run)
 
 
