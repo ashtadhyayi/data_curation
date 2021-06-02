@@ -37,7 +37,7 @@ def dump_suutra_commentary(suutra, comment, output_path, dry_run):
   # logging.debug(comment)
   content = markdownify(comment)
   md_file = MdFile(file_path=outpath, frontmatter_type=MdFile.YAML)
-  md_file.dump_to_file(metadata=metadata, md=content, dry_run=dry_run)
+  md_file.dump_to_file(metadata=metadata, content=content, dry_run=dry_run)
 
 
 def dump_commentary_data(commentary_file_path, suutra_data_path, output_path, dry_run):
