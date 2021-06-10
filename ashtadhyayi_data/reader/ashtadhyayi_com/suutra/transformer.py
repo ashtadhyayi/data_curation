@@ -1,3 +1,9 @@
+"""
+
+This is used in .github/workflows/commentary_separation.yml workflow of sanskrit/ashtadhyayi_com_transforms. transform() is the entry point.
+"""
+
+
 import codecs
 import json
 import logging
