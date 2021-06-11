@@ -27,8 +27,14 @@ def dump_base_dict(output_path):
       dict_file.write("%s\n" % "|".join(headwords))
       upasargas = ["%s - %s" % (u["name"], u["artha_hindi"]) for u in dhaatu_details["upasargas"]]
       upasarga_str = "<br>".join(upasargas)
-      entry = "%s %s %s<br>%s<br>%s<br>%s<br>%s" % (dhaatu_details["dhatu"], dhaatu_details["aupadeshik"], dhaatu_details["artha"], dhaatu_details.get("artha_english", ""), dhaatu_details.get("artha_hindi", ""), dhaatu_details["notes"], upasarga_str)
-      entry = entry.replace("<", "{").replace(">", "}")
+      notes_str = "<br>".join([n.replace("<", "{").replace(">", "}") for n in dhaatu_details["notes"]])
+      entry = "%s %s %s<br>%s<br>%s<br>%s<br>%s" % (
+        dhaatu_details["dhatu"], dhaatu_details["aupadeshik"], 
+        dhaatu_details["artha"].replace("<", "{").replace(">", "}"), 
+        dhaatu_details.get("artha_english", "").replace("<", "{").replace(">", "}"), 
+        dhaatu_details.get("artha_hindi", "").replace("<", "{").replace(">", "}"),
+        notes_str,
+        upasarga_str)
       dict_file.write("%s\n\n" % entry)
       # log.set_description_str(dhaatu_id)
     progress_bar.update(1)
