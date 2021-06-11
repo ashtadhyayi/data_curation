@@ -26,8 +26,8 @@ def dump_base_dict(output_path):
       headwords = list( dict.fromkeys(headwords) )
       dict_file.write("%s\n" % "|".join(headwords))
       upasargas = ["%s - %s" % (u["name"], u["artha_hindi"]) for u in dhaatu_details["upasargas"]]
-      upasarga_str = "<br>".join(upasargas)
-      notes_str = "<br>".join([n.replace("<", "{").replace(">", "}") for n in dhaatu_details["notes"]])
+      upasarga_str = possible_list_to_str(upasargas)
+      notes_str = possible_list_to_str(dhaatu_details["notes"])
       entry = "%s %s %s<br>%s<br>%s<br>%s<br>%s" % (
         dhaatu_details["dhatu"], dhaatu_details["aupadeshik"], 
         dhaatu_details["artha"].replace("<", "{").replace(">", "}"), 
@@ -39,6 +39,15 @@ def dump_base_dict(output_path):
       # log.set_description_str(dhaatu_id)
     progress_bar.update(1)
 
+def fix_markings(in_str):
+  return in_str.replace("<", "{").replace(">", "}")
+
+def possible_list_to_str(value):
+  if isinstance(value, list):
+    out_str = "<br>".join([fix_markings(item) for item in value])
+  else:
+    out_str = fix_markings(value)
+  return out_str
 
 
 def dump_forms_dict(type, output_path):
