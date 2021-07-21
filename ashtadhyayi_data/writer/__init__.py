@@ -39,7 +39,7 @@ def dump_tsv_vritti(vritti_id):
 
 def dump_per_suutra_mds(outpath, dry_run=False):
   md_file = MdFile(file_path="/home/vvasuki/ashtadhyayi/ashtadhyayi.github.io/content/sutra-details.md")
-  (_, content) = md_file.read_md_file()
+  (_, template_content) = md_file.read_md_file()
   suutra_df = ashtadhyayi_data.get_suutra_df()
   for suutra_id in suutra_df.index:
     dest_path = os.path.join(outpath, ashtadhyayi_data.get_adhyaya_pada_id(suutra_id), "%s.md" % suutra_id)
@@ -47,7 +47,7 @@ def dump_per_suutra_mds(outpath, dry_run=False):
     title = suutra_df.loc[suutra_id, "sutra"]
     title = "%s %s" % (suutra_id, title)
     [adhyaaya, paada, suutra] = suutra_id.split(".")
-    content = content.replace("ADHYAAYA", adhyaaya).replace("PAADA", paada).replace("SUUTRA", suutra)
+    content = template_content.replace("ADHYAAYA", adhyaaya).replace("PAADA", paada).replace("SUUTRA", suutra)
     md_file.dump_to_file(metadata={"title": title}, content=content, dry_run=dry_run)
   library.fix_index_files(dir_path=outpath)
 
