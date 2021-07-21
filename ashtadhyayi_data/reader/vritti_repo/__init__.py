@@ -6,6 +6,8 @@ from difflib import SequenceMatcher
 import frontmatter
 import logging
 
+from ashtadhyayi_data import get_suutra_df
+
 for handler in logging.root.handlers[:]:
     logging.root.removeHandler(handler)
 logging.basicConfig(
@@ -15,10 +17,13 @@ logging.basicConfig(
 
 pandas.set_option('display.max_columns', 5)
 pandas.set_option('display.width', 1000)
-ASHTADHYAYI_REPO_ROOT = "/home/vvasuki/sanskrit/ashtadhyayi"
+ASHTADHYAYI_REPO_ROOT = "/home/vvasuki/sanskrit/raw_etexts/vyAkaraNam/aShTAdhyAyI_central-repo/"
+
 
 def get_file_paths(vritti_id):
-    return sorted(glob.glob(os.path.join(ASHTADHYAYI_REPO_ROOT, vritti_id, "*/*.md")))
+    file_path = sorted(glob.glob(os.path.join(ASHTADHYAYI_REPO_ROOT, vritti_id, "*/*")))
+    return file_path
+
 
 def get_vritti_metadata_df(vritti_id):
     vritti_df = pandas.DataFrame(columns= ["index", "sutra", "vritti_index"])
@@ -35,7 +40,7 @@ def get_vritti_metadata_df(vritti_id):
 
 def get_vrittis_with_mismatching_sutra(vritti_id):
     vritti_metadata_df = get_vritti_metadata_df(vritti_id=vritti_id)
-    from ashtadhyayi_data import suutra_df
+    suutra_df = get_suutra_df()
     def mismatch_filter_fn(row, threshold=0.7):
         # logging.debug(row)
         if row['index'] not in suutra_df.index or SequenceMatcher(a=row.loc['sutra'], b=suutra_df.loc[row['index'], 'sutra']).ratio() < threshold:
