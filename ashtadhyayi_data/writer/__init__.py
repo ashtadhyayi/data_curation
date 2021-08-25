@@ -39,7 +39,7 @@ def dump_tsv_vritti(vritti_id):
 
 def dump_per_suutra_mds(outpath, dry_run=False):
   md_file = MdFile(file_path="/home/vvasuki/ashtadhyayi/ashtadhyayi.github.io/content/sutra-details.md")
-  (_, template_content) = md_file.read_md_file()
+  (_, template_content) = md_file.read()
   suutra_df = ashtadhyayi_data.get_suutra_df()
   for suutra_id in suutra_df.index:
     dest_path = os.path.join(outpath, ashtadhyayi_data.get_adhyaya_pada_id(suutra_id), "%s.md" % suutra_id)
