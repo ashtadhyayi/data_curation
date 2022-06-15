@@ -2,6 +2,7 @@ import logging
 import os
 
 import ashtadhyayi_data
+import doc_curation.md.library.arrangement
 from doc_curation.md import library
 from doc_curation.md.file import MdFile
 
@@ -49,7 +50,7 @@ def dump_per_suutra_mds(outpath, dry_run=False):
     [adhyaaya, paada, suutra] = suutra_id.split(".")
     content = template_content.replace("ADHYAAYA", adhyaaya).replace("PAADA", paada).replace("SUUTRA", suutra)
     md_file.dump_to_file(metadata={"title": title}, content=content, dry_run=dry_run)
-  library.fix_index_files(dir_path=outpath)
+  doc_curation.md.library.arrangement.fix_index_files(dir_path=outpath)
 
 if __name__ == '__main__':
   pass
