@@ -77,7 +77,7 @@ def dump_suutra_basics(indir, outdir, dry_run):
 
 def separate_commentaries(indir, outdir, dry_run, commentaries_in=None):
   # vartika and data.txt need special treatment - so they're not included below.
-  commentaries = ["balamanorama", "bhashya", "kashika", "kaumudi", "laghukaumudi", "nyaas", "padamanjari", "sutrartha", "sutrartha_english", "tattvabodhini"]
+  commentaries = ["balamanorama", "bhashya", "kashika", "kaumudi", "laghukaumudi", "laghushabdendushekhar", "nyaas", "padamanjari", "praudhamanorama", "sudha", "sutrartha", "sutrartha_english", "tattvabodhini", "vasu_english", "vasu_english_summary"]
   if commentaries_in is not None:
     commentaries = [x for x in commentaries if x in commentaries_in]
   logging.info("Processing commentaries: " + str(commentaries))
@@ -108,4 +108,4 @@ def transform(indir, outdir, dry_run):
 
 # python -c "from ashtadhyayi_data.reader.ashtadhyayi_com import transformer; transformer.separate_commentaries(indir=\"`pwd`/sutraani\", outdir=\"`pwd`/sUtra-commentaries/\", dry_run=True)"
 if __name__ == '__main__':
-  transform(indir="/home/vvasuki/sanskrit/raw_etexts/vyAkaraNam/aShTAdhyAyI-com-data/", outdir="/home/vvasuki/sanskrit/raw_etexts/vyAkaraNam/aShTAdhyAyI_central-repo/ashtadhyayi_com_transforms", dry_run=True)
+  transform(indir="/home/vvasuki/sanskrit/raw_etexts/vyAkaraNam/aShTAdhyAyI-com-data", outdir="/home/vvasuki/sanskrit/raw_etexts/vyAkaraNam/aShTAdhyAyI_central-repo/ashtadhyayi_com_transforms", dry_run=False)
